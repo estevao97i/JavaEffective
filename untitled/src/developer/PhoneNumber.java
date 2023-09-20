@@ -1,9 +1,10 @@
+package developer;
 
 import java.util.Formattable;
 import java.util.Formatter;
 import java.util.Objects;
 
-// se tiver muitas propriedades usar um Builder de PhoneNumber
+// se tiver muitas propriedades usar um Builder de developer.PhoneNumber
 public class PhoneNumber implements Formattable {
 
     private final int areaCode;
@@ -17,10 +18,10 @@ public class PhoneNumber implements Formattable {
 
     /** a razão de fazermos o factory method -> of
      * - código defensivo (checar a consistência dos dados -> defender de erros futuros na implementação)
-     * - Cache interno de uma instancia PhoneNumber,
+     * - Cache interno de uma instancia developer.PhoneNumber,
      * melhora a performance de memória - dois objetos idênticos são referenciados na mesma memória do cache (flyweight - designPattern)
      * - consegue comparar dois objetos apenas usando o operador ex: | objectA == objectB | -> não precisa usar o equals!
-     * - pode retornar qualquer classe que herda PhoneNumber
+     * - pode retornar qualquer classe que herda developer.PhoneNumber
      * **/
     public static PhoneNumber of(int areaCode, int number) {
         if (areaCode < 1) throw new IllegalArgumentException("areaCode must be greater than 0");
@@ -51,7 +52,7 @@ public class PhoneNumber implements Formattable {
 
     @Override
     public String toString() {
-        return "PhoneNumber: { " +
+        return "developer.PhoneNumber: { " +
                 "areaCode: " + areaCode +
                 ", number: " + number +
                 " }";
