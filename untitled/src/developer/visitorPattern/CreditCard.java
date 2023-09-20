@@ -1,6 +1,6 @@
 package developer.visitorPattern;
 
-public abstract class CreditCard {
+public sealed abstract class CreditCard permits Visa, MasterCard {
 
     public abstract <T> T doSomething(CardVisitor<T> cardVisitor);
 
@@ -23,7 +23,7 @@ public abstract class CreditCard {
     }
 }
 
-class Visa extends CreditCard {
+final class Visa extends CreditCard {
 
     @Override
     public <T> T doSomething(CardVisitor<T> cardVisitor) {
@@ -31,7 +31,7 @@ class Visa extends CreditCard {
     }
 }
 
-class MasterCard extends CreditCard {
+final class MasterCard extends CreditCard {
 
     @Override
     public <T> T doSomething(CardVisitor<T> cardVisitor) {
