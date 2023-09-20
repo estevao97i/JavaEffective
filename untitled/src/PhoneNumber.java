@@ -1,5 +1,8 @@
 import exception.JavaEffectiveException;
 
+import java.util.Objects;
+
+// se tiver muitas propriedades usar um Builder de PhoneNumber
 public class PhoneNumber {
 
     private final int areaCode;
@@ -21,18 +24,22 @@ public class PhoneNumber {
     public static PhoneNumber of(int areaCode, int number) {
         if (areaCode < 1) throw new IllegalArgumentException("areaCode must be greater than 0");
         if (number < 1) throw new IllegalArgumentException("number must be greater than 0");
-
-        if (areaCode < 50) {
-            return new InternationalPhoneNumber(areaCode, number);
-        }
         return new PhoneNumber(areaCode, number);
     }
-}
 
-class InternationalPhoneNumber extends PhoneNumber {
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof PhoneNumber) {
+            PhoneNumber other = (PhoneNumber) obj;
+            return Objects.equals(this.areaCode, other.areaCode)
+                    && Objects.equals(this.number, other.number);
+        }
+        return false;
+    }
 
-    public InternationalPhoneNumber(int areaCode, int number) {
-        super(areaCode, number);
-        of(areaCode, number);
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.areaCode, this.number);
     }
 }
+
