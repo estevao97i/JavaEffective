@@ -1,31 +1,21 @@
 package developer;
 
-public enum OperationEnum {
-    ADD {
-        @Override
-        public int compute(int x, int y) {
-            return x + y;
-        }
-    },
-    SUBTRACT {
-        @Override
-        public int compute(int x, int y) {
-            return x - y;
-        }
-    },
-    MULTIPLY {
-        @Override
-        public int compute(int x, int y) {
-            return x * y;
-        }
-    },
-    DIVIDE {
-        @Override
-        public int compute(int x, int y) {
-            return x / y;
-        }
-    };
+import java.util.function.IntBinaryOperator;
 
-    public abstract int compute(int x, int y);
+public enum OperationEnum {
+    ADD((x, y) -> x + y),
+    SUBTRACT((x, y) -> x - y),
+    MULTIPLY((x, y) -> x * y),
+    DIVIDE((x, y) -> x / y);
+
+    private final IntBinaryOperator operator;
+
+    OperationEnum(IntBinaryOperator operator) {
+        this.operator = operator;
+    }
+
+    public int compute(int x, int y) {
+        return operator.applyAsInt(x, y);
+    }
 
 }
