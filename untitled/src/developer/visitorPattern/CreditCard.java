@@ -3,14 +3,24 @@ package developer.visitorPattern;
 public abstract class CreditCard {
 
     public abstract <T> T doSomething(CardVisitor<T> cardVisitor);
-}
 
-interface CardVisitor<T> {
+    public static void main(String[] args) {
+        CardVisitor<Integer> visitor = new CardVisitor<Integer>() {
 
-    public T visit(Visa visa);
+            @Override
+            public Integer visit(Visa visa) {
+                return 1;
+            }
 
-    public T visit(MasterCard masterCard);
+            @Override
+            public Integer visit(MasterCard masterCard) {
+                return 2;
+            }
+        };
 
+        System.out.println(visitor.visit(new Visa()));
+        System.out.println(visitor.visit(new MasterCard()));
+    }
 }
 
 class Visa extends CreditCard {
