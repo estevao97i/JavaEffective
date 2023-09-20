@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 public class FavorStrategy {
 
-    // Supplier porque nao recebe nenhum parametro e retorna um valor do tipo String
+    // Supplier porque nao recebe nenhum parametro e retorna um valor do tipo String -> Lambda Functions
     private final Supplier<String> supplier;
 
     private FavorStrategy(Supplier<String> supplier) {
