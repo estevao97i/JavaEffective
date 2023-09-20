@@ -24,13 +24,13 @@ public class PhoneNumber {
     public static PhoneNumber of(int areaCode, int number) {
         if (areaCode < 1) throw new IllegalArgumentException("areaCode must be greater than 0");
         if (number < 1) throw new IllegalArgumentException("number must be greater than 0");
+
         return new PhoneNumber(areaCode, number);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof PhoneNumber) {
-            PhoneNumber other = (PhoneNumber) obj;
+        if (obj instanceof PhoneNumber other) {
             return Objects.equals(this.areaCode, other.areaCode)
                     && Objects.equals(this.number, other.number);
         }
