@@ -1,9 +1,11 @@
 import exception.JavaEffectiveException;
 
+import java.util.Formattable;
+import java.util.Formatter;
 import java.util.Objects;
 
 // se tiver muitas propriedades usar um Builder de PhoneNumber
-public class PhoneNumber {
+public class PhoneNumber implements Formattable {
 
     private final int areaCode;
 
@@ -41,6 +43,27 @@ public class PhoneNumber {
     @Override
     public int hashCode() {
         return Objects.hash(this.areaCode, this.number);
+    }
+
+    @Override
+    public void formatTo(Formatter formatter, int flags, int width, int precision) {
+        formatter.format("(%d) %d", areaCode, number);
+    }
+
+    @Override
+    public String toString() {
+        return "PhoneNumber: { " +
+                "areaCode: " + areaCode +
+                ", number: " + number +
+                " }";
+    }
+
+    public int getAreaCode() {
+        return areaCode;
+    }
+
+    public int getNumber() {
+        return number;
     }
 }
 
