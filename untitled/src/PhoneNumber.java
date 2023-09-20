@@ -30,6 +30,7 @@ public class PhoneNumber {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == this) return true;
         if (obj instanceof PhoneNumber other) {
             return this.areaCode == other.areaCode
                     && Objects.equals(this.number, other.number);
